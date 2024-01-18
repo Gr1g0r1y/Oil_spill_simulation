@@ -1,4 +1,4 @@
-import math
+import math as math
 import random
 
 import pygame as pg
@@ -53,51 +53,26 @@ class Fish(pg.sprite.Sprite):
             return
 
 
-class InputBox:
-    
-    def __init__(self, x, y, w, h, text='1'):
-        self.rect = pg.Rect(x, y, w, h)
-        self.color = color.COLOR_INACTIVE
-        self.text = text
-        self.txt_surface = pg.font.Font(None, 32).render(text, True, self.color)
-        self.active = False
-    
-    def handle_event(self, event):
-        if event.type == pg.MOUSEBUTTONDOWN:
-            if self.rect.collidepoint(event.pos):
-                self.active = not self.active
-            else:
-                self.active = False
-            self.color = color.COLOR_ACTIVE if self.active else color.COLOR_INACTIVE
-        if event.type == pg.KEYDOWN:
-            if self.active:
-                if event.key == pg.K_RETURN:
-                    print(self.text)
-                    self.text = ''
-                elif event.key == pg.K_BACKSPACE:
-                    self.text = self.text[:-1]
-                else:
-                    self.text += event.unicode
-                self.txt_surface = pg.font.Font(None, 32).render(self.text, True, self.color)
-    
-    def update(self):
-        width = max(120, self.txt_surface.get_width() + 10)
-        self.rect.w = width
-    
-    def draw(self, screen):
-        screen.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + 5))
-        pg.draw.rect(screen, self.color, self.rect, 2)
-
-
 class Oil:
-    def __init__(self, k0=0.5, d_p=1, Q=1, mu_0=1, q=1, V=1000, zalupa=1):
+    def __init__(self, ro_0=1, bett=1, mu=1, g=1, ro_w=1, V_0=1, h=1, d_h=1, d_r=1, ro_a=1, C_d=1, W_x=1, scale=1):
         self.startTime = 0
-        self.v = V
-        self.zalupa = zalupa
+        self.v = V_0
+        self.scale = scale
+        self.ro_0 = ro_0
+        self.bett = bett
+        self.mu = mu
+        self.g = g
+        self.ro_w = ro_w
+        self.h = h
+        self.d_h = d_h
+        self.d_r = d_r
+        self.ro_a = ro_a
+        self.C_d = C_d
+        self.W_x = W_x
         g = 9.81
-        a = 2 * math.pi * k0 * (q ** 2) / (d_p * g * mu_0 * Q)
+        a = 2 * 232
         f = (a - (a ** 2 + 2 * a) ** 0.5 + 1) ** 0.125
-        self.const_for_r = (k0 / math.pi ** 3) ** 0.125 * ((d_p * g * Q ** 3) / mu_0) ** 0.125 * f
+        self.const_for_r = (h / math.pi ** 3) ** 0.125 * ((mu * g * C_d ** 3) / d_h) ** 0.125 * f
         self.max_r = 2500
         self.currentRadius = 0
     
@@ -120,6 +95,21 @@ class Oil:
             return round(self.max_r, 2)
         return round(r, 2)
     
+    def getNewVx(self, currentTime):
+        pass
+    
+    def getNewVy(self, currentTime):
+        pass
+    
     def draw(self, screen, current_time):
         self.currentRadius = self.getNewRadius(current_time)
-        pg.draw.circle(screen, color.BLACK, (cfg.WIDTH // 2, (cfg.HEIGHT - 200) // 2), round(self.currentRadius / self.zalupa))
+        self.s_x = self.currentRadius
+        self.s_y = self.currentRadius
+        self.a = math.acos(self.s_x / ((self.s_x ** 2 + (2 * self.s_y) ** 2) ** 0.5 + 0.000000001))
+        self.mini_r = round(2 * self.s_y / math.cos(self.a) / self.scale)
+        self.centre_of_circle = (round((self.s_x + math.tan(self.a) * 2 * self.s_y) / self.scale), cfg.HEIGHT // 2)
+        pg.draw.circle(screen, color.BLACK, self.centre_of_circle, self.mini_r)
+        self.p1 = [0, cfg.HEIGHT // 2]
+        self.p2 = [0 + round(self.s_x / self.scale), cfg.HEIGHT // 2 + 2 * round(self.s_y / self.scale)]
+        self.p3 = [0 + round(self.s_x / self.scale), cfg.HEIGHT // 2 - 2 * round(self.s_y / self.scale)]
+        pg.draw.polygon(screen, color.BLACK, [self.p1, self.p2, self.p3])
