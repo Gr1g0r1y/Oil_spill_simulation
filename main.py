@@ -72,18 +72,18 @@ if __name__ == "__main__":
         
         if startProcess:
             oil.draw(screen, pg.time.get_ticks())
-            # fishes.update(oil.currentRadius / oil.zalupa)
+            fishes.update(oil)
             text_time = pg.font.SysFont('arial', 40).render(f"t = {oil.time // 100 / 10}s", 2, (0, 0, 0))
             text_r = pg.font.SysFont('arial', 40).render(f"R = {oil.getNewRadius(pg.time.get_ticks())} м", 2, (0, 0, 0))
             text_s = pg.font.SysFont('arial', 40).render(f"S = {round(oil.get_square())} м^2", 2, (0, 0, 0))
             text_h = pg.font.SysFont('arial', 40).render(f"H = {round(oil.get_h() * 1000, 1)} * 10^5 м", 2, (0, 0, 0))
         else:
-            # fishes.update(0)
+            fishes.update(None)
             text_time = pg.font.SysFont('arial', 40).render("t = 0s", 2, (0, 0, 0))
             text_r = pg.font.SysFont('arial', 40).render("R = 0 м", 2, (0, 0, 0))
         
         # fishes
-        # fishes.draw(screen)
+        fishes.draw(screen)
         
         # panel
         pg.draw.rect(screen, color.PANEL, (0, 500, cfg.WIDTH, 200))
