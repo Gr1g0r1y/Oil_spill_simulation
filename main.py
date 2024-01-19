@@ -1,13 +1,8 @@
-import sys
-import math
-from random import randint
 import pygame as pg
 import colors as color
 import config as cfg
 from objects import Fish, Oil
 from tkinter import *
-import threading
-import time
 
 
 
@@ -35,11 +30,11 @@ if __name__ == "__main__":
             if event.type == pg.QUIT or keys[pg.K_ESCAPE]:
                 pg.quit()
                 sys.exit()
-        oil = Oil(ro_0=d_of_v['ro_0'], bett=d_of_v['bett'], mu=d_of_v['mu'], g=d_of_v['g'], ro_w=d_of_v['ro_w'], V_0=d_of_v['V_0'], h=d_of_v['h'], d_h=d_of_v['d_h'],  ro_a=d_of_v['ro_a'], C_d=d_of_v['C_d'], W_x=d_of_v['W_x'], scale=d_of_v['scale'])
-
+        oil = Oil()
+        oil.run(pg.time.get_ticks())
         oil.draw(screen, pg.time.get_ticks())
         text_time = pg.font.SysFont('arial', 40).render(f"t = {oil.time // 100 / 10}s", 2, (0, 0, 0))
-        text_r = pg.font.SysFont('arial', 40).render(f"R = {oil.getNewRadius(pg.time.get_ticks())} м", 2, (0, 0, 0))
+        text_r = pg.font.SysFont('arial', 40).render(f"A = {oil.get_new_V(pg.time.get_ticks())} м", 2, (0, 0, 0))
         text_s = pg.font.SysFont('arial', 40).render(f"S = {round(oil.get_square())} м^2", 2, (0, 0, 0))
         text_h = pg.font.SysFont('arial', 40).render(f"H = {round(oil.get_h() * 1000, 1)} * 10^5 м", 2, (0, 0, 0))
         

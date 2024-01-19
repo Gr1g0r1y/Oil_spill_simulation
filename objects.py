@@ -54,46 +54,73 @@ class Fish(pg.sprite.Sprite):
 
 
 class Oil:
-    def __init__(self, ro_0=1, bett=1, mu=1, g=1, ro_w=1, V_0=1, h=1, d_h=1, d_r=1, ro_a=1, C_d=1, W_x=1, scale=1):
-        self.startTime = 0
-        self.v = V_0
+    def __init__(self, ro_w=2, ro_0=1, scale=1000000, g=1, mu=1, kin_vis_w=1, v0=1, kin_vis_0=1, p_a=1, C_d=1, W_x=1, W_y=1, fi=1, horseshoe=1, u_w=1, v_w=1):
+        self.ro_w = ro_w
         self.scale = scale
         self.ro_0 = ro_0
-        self.bett = bett
-        self.mu = mu
         self.g = g
-        self.ro_w = ro_w
-        self.h = h
-        self.d_h = d_h
-        self.d_r = d_r
-        self.ro_a = ro_a
+        self.mu = mu
+        self.kin_vis_w = kin_vis_w
+        self.v0 = v0
+        self.kin_vis_0 = kin_vis_0
+        self.p_a = p_a
         self.C_d = C_d
         self.W_x = W_x
-        g = 9.81
-        a = 2 * 232
-        f = (a - (a ** 2 + 2 * a) ** 0.5 + 1) ** 0.125
-        self.const_for_r = (h / math.pi ** 3) ** 0.125 * ((mu * g * C_d ** 3) / d_h) ** 0.125 * f
-        self.max_r = 2500
-        self.currentRadius = 0
+        self.W_y = W_y
+        self.horseshoe = horseshoe
+        self.fi = fi
+        self.u_w = u_w
+        self.v_w = v_w
+        
+        self.s_x = 0
+        self.s_y = 0
+        self.u_d = 0
+        self.v_d = 0
+        self.r = 0
+        self.h = 0
+        self.time = 0
+        
     
     def run(self, startTime: int):
         self.startTime = startTime
     
     def get_square(self):
-        return math.pi * self.currentRadius ** 2
+        return 1
     
     def get_h(self):
-        if self.get_square() == 0:
-            return self.v
-        return self.v / self.get_square()
+        return self.h
     
-    def getNewRadius(self, currentTime) -> int:
-        time = currentTime - self.startTime
-        self.time = time
-        r = self.const_for_r * math.sqrt(time)
-        if r > self.max_r:
-            return round(self.max_r, 2)
-        return round(r, 2)
+    def get_new_V(self, currentTime):
+        t = currentTime - self.startTime + 10 ** (-10)
+        e0 = 4 / 162 ** 0.125  # 1
+        d = (self.ro_w - self.ro_0) / self.ro_0  # 3
+        alf = self.ro_0 * d * self.g / (4 * self.mu)  # 2
+        d_w = 1.72 * (self.kin_vis_w * t)  # 4
+        print(t)
+        h = (e0 ** (2 / 3)) * ((self.v0 / 2 / math.pi / alf / t) ** 0.25) * (3 ** (1 / 3)) / 4  # 12
+        b1 = 1 + (self.ro_0 * self.kin_vis_0 * d_w) / (self.ro_w * self.kin_vis_w * h + self.ro_0 * self.kin_vis_0 * d_w)  # 6
+        b2 = 1 - (self.ro_0 * self.kin_vis_0 * d_w) / (self.ro_w * self.kin_vis_w * h + self.ro_0 * self.kin_vis_0 * d_w)  # 5
+        y = (self.ro_0 * self.kin_vis_0 * self.kin_vis_w) / (self.ro_w * self.kin_vis_w * h + self.ro_0 * self.kin_vis_0 * d_w)  # 7
+        t_0_x = self.p_a * self.C_d * (self.W_x - self.u_d) ** 2  # 8
+        t_0_y = self.p_a * self.C_d * (self.W_y - self.v_d) ** 2  # 9
+        f = 2 * self.horseshoe * math.sin(self.fi)  # 10
+        r = e0 * ((self.v0 ** 3 * alf * t) / (8 * math.pi ** 3)) ** 0.125  # 11
+        d_r = r - self.r
+        self.r = r
+        d_h = h - self.h
+        self.h = h
+        U_0 = (self.ro_0 * d * self.g * h ** 2) / self.mu * (d_h / d_r)  # 13
+        u_wd = t_0_x / (self.ro_0 * h * f)  # 15
+        v_wd = t_0_y / (self.ro_0 * h * f)  # 16
+        u_cd = (((2 * y / (f * h * b1)) ** 2 - b2 / b1) * self.u_w + (b2 / b1 + 1) * self.v_w * 2 * y / (f * h * b1)) / (
+                1 + (2 * y / (f * h * b1)) ** 2)
+        v_cd = (((2 * y / (f * h * b1)) ** 2 - b2 / b1) * self.v_w + (b2 / b1 + 1) * self.u_w * 2 * y / (f * h * b1)) / (
+                1 + (2 * y / (f * h * b1)) ** 2)
+        self.u_d = u_wd + u_cd
+        self.v_d = v_wd + v_cd
+        self.time = t
+        return (abs(u_cd + U_0), abs(v_cd + U_0))
+         
     
     def getNewVx(self, currentTime):
         pass
@@ -102,12 +129,16 @@ class Oil:
         pass
     
     def draw(self, screen, current_time):
-        self.currentRadius = self.getNewRadius(current_time)
-        self.s_x = self.currentRadius
-        self.s_y = self.currentRadius
+        cort_v = self.get_new_V(current_time)
+        
+        self.s_x = self.s_x + cort_v[0]
+        self.s_y = self.s_y + cort_v[1]
+
         self.a = math.acos(self.s_x / ((self.s_x ** 2 + (2 * self.s_y) ** 2) ** 0.5 + 0.000000001))
         self.mini_r = round(2 * self.s_y / math.cos(self.a) / self.scale)
         self.centre_of_circle = (round((self.s_x + math.tan(self.a) * 2 * self.s_y) / self.scale), cfg.HEIGHT // 2)
+
+        
         pg.draw.circle(screen, color.BLACK, self.centre_of_circle, self.mini_r)
         self.p1 = [0, cfg.HEIGHT // 2]
         self.p2 = [0 + round(self.s_x / self.scale), cfg.HEIGHT // 2 + 2 * round(self.s_y / self.scale)]
