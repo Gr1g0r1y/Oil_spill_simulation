@@ -10,24 +10,28 @@ class MyWidget(QMainWindow):
         super().__init__()
         uic.loadUi('menu.ui', self)
         self.start_btn.clicked.connect(self.run)
-    
+
     def run(self):
-        data_ro_0 = self.data_ro_0.text()
-        data_bett = self.data_bett.text()
-        data_mu = self.data_mu.text()
-        data_g = self.data_g.text()
-        data_ro_w = self.data_ro_w.text()
-        data_V_0 = self.data_V_0.text()
-        data_h = self.data_h.text()
-        data_d_h = self.data_d_h.text()
-        ro_a = self.data_ro_a.text()
-        C_d = self.data_C_d.text()
+        ro_w = self.data_ro_w.text()
+        ro_0 = self.data_ro_0.text()
+        mu = self.data_mu.text()
+        g = self.data_g.text()
+        kin_vis_w = self.data_kin_vis_w.text()
+        kin_vis_0 = self.data_kin_vis_0.text()
+        v_0 = self.data_v_0.text()
+        p_a = self.data_p_a.text()
         W_x = self.data_W_x.text()
+        W_y = self.data_W_y.text()
+        horseshoe = self.data_horseshoe.text()
+        fi = self.data_fi.text()
+        u_w = self.data_u_w.text()
+        v_w = self.data_v_w.text()
         scale = self.data_scale.text()
-        
+        C_d = self.data_C_d.text()
+
         with open('file.txt', 'w') as f:
             f.write(
-                f'ro_0={data_ro_0}\nbett={data_bett}\nmu={data_mu}\ng={data_g}\nro_w={data_ro_w}\nV_0={data_V_0}\nh={data_h}\nd_h={data_d_h}\nro_a={ro_a}\nC_d={C_d}\nW_x={W_x}\nscale={scale}')
+                f'ro_w={ro_w}\nro_0={ro_0}\nmu={mu}\ng={g}\nkin_vis_w={kin_vis_w}\nkin_vis_0={kin_vis_0}\nv_0={v_0}\np_a={p_a}\nW_x={W_x}\nW_y={W_y}\nhorseshoe={horseshoe}\nfi={fi}\nu_w={u_w}\nv_w={v_w}\nscale={scale}\nC_d={C_d}\n')
         f.close()
         exec(open('main.py').read())
 

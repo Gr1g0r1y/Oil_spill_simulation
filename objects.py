@@ -54,23 +54,23 @@ class Fish(pg.sprite.Sprite):
 
 
 class Oil:
-    def __init__(self, ro_w=2, ro_0=1, scale=1000000, g=1, mu=1, kin_vis_w=1, v0=1, kin_vis_0=1, p_a=1, C_d=1, W_x=1, W_y=1, fi=1, horseshoe=1, u_w=1, v_w=1):
-        self.ro_w = ro_w
+    def __init__(self, ro_w=1100, ro_0=860, scale=50, g=9.81, mu=0.05, kin_vis_w=1.519, v0=10, kin_vis_0=0.05, p_a=1.2754, C_d=0.005, W_x=100, W_y=10 ** -10, fi=1, horseshoe=7.2921 * 10 ** (-5), u_w=1, v_w=1):
+        self.ro_w = ro_w / scale
         self.scale = scale
-        self.ro_0 = ro_0
-        self.g = g
-        self.mu = mu
-        self.kin_vis_w = kin_vis_w
-        self.v0 = v0
-        self.kin_vis_0 = kin_vis_0
-        self.p_a = p_a
-        self.C_d = C_d
-        self.W_x = W_x
-        self.W_y = W_y
-        self.horseshoe = horseshoe
-        self.fi = fi
-        self.u_w = u_w
-        self.v_w = v_w
+        self.ro_0 = ro_0 / scale
+        self.g = g / scale
+        self.mu = mu / scale
+        self.kin_vis_w = kin_vis_w / scale
+        self.v0 = v0 / scale
+        self.kin_vis_0 = kin_vis_0 / scale
+        self.p_a = p_a / scale
+        self.C_d = C_d / scale
+        self.W_x = W_x / scale
+        self.W_y = W_y / scale
+        self.horseshoe = horseshoe / scale * 10 ** (-5)
+        self.fi = fi * math.pi / 180 / scale
+        self.u_w = u_w / scale
+        self.v_w = v_w / scale
         
         self.s_x = 0
         self.s_y = 0
@@ -79,35 +79,38 @@ class Oil:
         self.r = 0
         self.h = 0
         self.time = 0
+        self.startTime = 0
+        self.s = 0
+
         
     
     def run(self, startTime: int):
         self.startTime = startTime
     
     def get_square(self):
-        return 1
+        return 12
     
     def get_h(self):
         return self.h
     
     def get_new_V(self, currentTime):
-        t = currentTime - self.startTime + 10 ** (-10)
+        t = (currentTime - self.startTime + 10 ** (-10)) / 1000
         e0 = 4 / 162 ** 0.125  # 1
         d = (self.ro_w - self.ro_0) / self.ro_0  # 3
         alf = self.ro_0 * d * self.g / (4 * self.mu)  # 2
         d_w = 1.72 * (self.kin_vis_w * t)  # 4
-        print(t)
         h = (e0 ** (2 / 3)) * ((self.v0 / 2 / math.pi / alf / t) ** 0.25) * (3 ** (1 / 3)) / 4  # 12
         b1 = 1 + (self.ro_0 * self.kin_vis_0 * d_w) / (self.ro_w * self.kin_vis_w * h + self.ro_0 * self.kin_vis_0 * d_w)  # 6
         b2 = 1 - (self.ro_0 * self.kin_vis_0 * d_w) / (self.ro_w * self.kin_vis_w * h + self.ro_0 * self.kin_vis_0 * d_w)  # 5
         y = (self.ro_0 * self.kin_vis_0 * self.kin_vis_w) / (self.ro_w * self.kin_vis_w * h + self.ro_0 * self.kin_vis_0 * d_w)  # 7
-        t_0_x = self.p_a * self.C_d * (self.W_x - self.u_d) ** 2  # 8
-        t_0_y = self.p_a * self.C_d * (self.W_y - self.v_d) ** 2  # 9
+        t_0_x = self.p_a * self.C_d * (self.W_x - self.u_d) * abs(self.W_x - self.u_d)  # 8
+        t_0_y = self.p_a * self.C_d * (self.W_y - self.v_d) * abs(self.W_y - self.v_d) # 9
+        # print(t_0_y, self.v_d)
         f = 2 * self.horseshoe * math.sin(self.fi)  # 10
         r = e0 * ((self.v0 ** 3 * alf * t) / (8 * math.pi ** 3)) ** 0.125  # 11
         d_r = r - self.r
         self.r = r
-        d_h = h - self.h
+        d_h = self.h - h
         self.h = h
         U_0 = (self.ro_0 * d * self.g * h ** 2) / self.mu * (d_h / d_r)  # 13
         u_wd = t_0_x / (self.ro_0 * h * f)  # 15
@@ -118,8 +121,8 @@ class Oil:
                 1 + (2 * y / (f * h * b1)) ** 2)
         self.u_d = u_wd + u_cd
         self.v_d = v_wd + v_cd
-        self.time = t
-        return (abs(u_cd + U_0), abs(v_cd + U_0))
+        self.time = t * 1000
+        return (u_cd + U_0, U_0 - v_cd)
          
     
     def getNewVx(self, currentTime):
@@ -130,17 +133,17 @@ class Oil:
     
     def draw(self, screen, current_time):
         cort_v = self.get_new_V(current_time)
-        
         self.s_x = self.s_x + cort_v[0]
         self.s_y = self.s_y + cort_v[1]
+        # print(self.s_x, self.s_y)
 
         self.a = math.acos(self.s_x / ((self.s_x ** 2 + (2 * self.s_y) ** 2) ** 0.5 + 0.000000001))
-        self.mini_r = round(2 * self.s_y / math.cos(self.a) / self.scale)
-        self.centre_of_circle = (round((self.s_x + math.tan(self.a) * 2 * self.s_y) / self.scale), cfg.HEIGHT // 2)
-
+        self.mini_r = round(2 * self.s_y / math.cos(self.a))
+        self.centre_of_circle = (round((self.s_x + math.tan(self.a) * 2 * self.s_y)), cfg.HEIGHT // 2)
+        self.l = (self.s_x + math.tan(self.a) * 2 * self.s_y) + self.mini_r
         
-        pg.draw.circle(screen, color.BLACK, self.centre_of_circle, self.mini_r)
+        # pg.draw.circle(screen, color.BLACK, self.centre_of_circle, self.mini_r)
         self.p1 = [0, cfg.HEIGHT // 2]
-        self.p2 = [0 + round(self.s_x / self.scale), cfg.HEIGHT // 2 + 2 * round(self.s_y / self.scale)]
-        self.p3 = [0 + round(self.s_x / self.scale), cfg.HEIGHT // 2 - 2 * round(self.s_y / self.scale)]
+        self.p2 = [0 + round(self.s_x), cfg.HEIGHT // 2 + 2 * round(self.s_y)]
+        self.p3 = [0 + round(self.s_x), cfg.HEIGHT // 2 - 2 * round(self.s_y)]
         pg.draw.polygon(screen, color.BLACK, [self.p1, self.p2, self.p3])

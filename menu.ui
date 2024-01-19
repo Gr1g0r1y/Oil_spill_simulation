@@ -1,83 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>gkl</class>
+ <widget class="QMainWindow" name="gkl">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>570</width>
-    <height>744</height>
+    <width>887</width>
+    <height>968</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>570</width>
-    <height>744</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>570</width>
-    <height>744</height>
+    <width>16777215</width>
+    <height>16777215</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Продам гараж</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>3</x>
-      <y>9</y>
-      <width>561</width>
-      <height>581</height>
+      <x>0</x>
+      <y>60</y>
+      <width>741</width>
+      <height>591</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>125</width>
+      <height>0</height>
+     </size>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                         Переменная</string>
+          <string>          Переменная</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>За что отвечает</string>
+          <string>      Что это?</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="data_Example">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>150</width>
-           <height>16777215</height>
-          </size>
+        <widget class="QLabel" name="label_4">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
          </property>
          <property name="text">
-          <string>Ее значение</string>
+          <string>        Значение</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_7">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
            <height>16777215</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>в чем измер</string>
+          <string>Единица Изм.</string>
          </property>
         </widget>
        </item>
@@ -87,22 +110,33 @@
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
         <widget class="QLabel" name="label_10">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                         ro_0</string>
+          <string>                   𝜌𝑤</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_11">
          <property name="text">
-          <string>За что отвечает</string>
+          <string>Плотность воды на месте разлива</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="data_ro_0">
+        <widget class="QLineEdit" name="data_ro_w">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -111,12 +145,18 @@
           </size>
          </property>
          <property name="text">
-          <string>12</string>
+          <string>1000</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_12">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -124,7 +164,7 @@
           </size>
          </property>
          <property name="text">
-          <string>сек</string>
+          <string>кг/м^3</string>
          </property>
         </widget>
        </item>
@@ -134,22 +174,33 @@
       <layout class="QHBoxLayout" name="horizontalLayout_5">
        <item>
         <widget class="QLabel" name="label_13">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                         bett</string>
+          <string>                   𝜌0</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_14">
          <property name="text">
-          <string>За что отвечает</string>
+          <string>Плотность растёкшейся нефти</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="data_bett">
+        <widget class="QLineEdit" name="data_ro_0">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -158,12 +209,18 @@
           </size>
          </property>
          <property name="text">
-          <string>34</string>
+          <string>860</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_15">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -171,7 +228,7 @@
           </size>
          </property>
          <property name="text">
-          <string>м^2</string>
+          <string>кг/м^3</string>
          </property>
         </widget>
        </item>
@@ -181,15 +238,20 @@
       <layout class="QHBoxLayout" name="horizontalLayout_6">
        <item>
         <widget class="QLabel" name="label_16">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                         mu</string>
+          <string>                   𝜇</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_17">
          <property name="text">
-          <string>За что отвечает</string>
+          <string>Кинематическая вязкость нефти</string>
          </property>
         </widget>
        </item>
@@ -198,6 +260,12 @@
          <property name="enabled">
           <bool>true</bool>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>150</width>
@@ -205,12 +273,18 @@
           </size>
          </property>
          <property name="text">
-          <string>172</string>
+          <string>0.05</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_18">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -218,7 +292,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Дж</string>
+          <string>м^2/c</string>
          </property>
         </widget>
        </item>
@@ -228,15 +302,26 @@
       <layout class="QHBoxLayout" name="horizontalLayout_7">
        <item>
         <widget class="QLabel" name="label_19">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                         g</string>
+          <string>                   g</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_20">
          <property name="text">
-          <string>За что отвечает</string>
+          <string>Ускорение свободного падения</string>
          </property>
         </widget>
        </item>
@@ -244,6 +329,12 @@
         <widget class="QLineEdit" name="data_g">
          <property name="enabled">
           <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -258,6 +349,12 @@
        </item>
        <item>
         <widget class="QLabel" name="label_21">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -275,22 +372,33 @@
       <layout class="QHBoxLayout" name="horizontalLayout_9">
        <item>
         <widget class="QLabel" name="label_25">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                         ro_w</string>
+          <string>                  𝜗𝑤</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_26">
          <property name="text">
-          <string>За что отвечает</string>
+          <string>Кинематическая вязкость нефти</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="data_ro_w">
+        <widget class="QLineEdit" name="data_kin_vis_w">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -299,12 +407,18 @@
           </size>
          </property>
          <property name="text">
-          <string>232</string>
+          <string>1.519</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_27">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -312,7 +426,7 @@
           </size>
          </property>
          <property name="text">
-          <string>хз</string>
+          <string>м^2/c</string>
          </property>
         </widget>
        </item>
@@ -322,22 +436,44 @@
       <layout class="QHBoxLayout" name="horizontalLayout_10">
        <item>
         <widget class="QLabel" name="label_28">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                        V_0</string>
+          <string>                  𝜗0</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_29">
-         <property name="text">
-          <string>За что отвечает</string>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Кинематическая вязкость воды</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>на месте разлива</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QLineEdit" name="data_V_0">
+        <widget class="QLineEdit" name="data_kin_vis_0">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -346,12 +482,18 @@
           </size>
          </property>
          <property name="text">
-          <string>12</string>
+          <string>0.05</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_30">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -359,7 +501,7 @@
           </size>
          </property>
          <property name="text">
-          <string>м^3</string>
+          <string>м^2/c</string>
          </property>
         </widget>
        </item>
@@ -369,22 +511,36 @@
       <layout class="QHBoxLayout" name="horizontalLayout_11">
        <item>
         <widget class="QLabel" name="label_31">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                         h</string>
+          <string>                  V0</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_32">
          <property name="text">
-          <string>За что отвечает</string>
+          <string>Объём вылившейся нефти</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="data_h">
+        <widget class="QLineEdit" name="data_v_0">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -399,6 +555,12 @@
        </item>
        <item>
         <widget class="QLabel" name="label_33">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -406,7 +568,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Вольт</string>
+          <string>м^3</string>
          </property>
         </widget>
        </item>
@@ -416,22 +578,33 @@
       <layout class="QHBoxLayout" name="horizontalLayout_12">
        <item>
         <widget class="QLabel" name="label_34">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                         d_h</string>
+          <string>                  𝜌𝑎</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_35">
          <property name="text">
-          <string>За что отвечает</string>
+          <string>Плотность воздуха на месте разлива</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="data_d_h">
+        <widget class="QLineEdit" name="data_p_a">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -440,12 +613,18 @@
           </size>
          </property>
          <property name="text">
-          <string>153</string>
+          <string>1.2754</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_36">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -453,7 +632,7 @@
           </size>
          </property>
          <property name="text">
-          <string>ПарСек</string>
+          <string>кг/м^3</string>
          </property>
         </widget>
        </item>
@@ -463,22 +642,33 @@
       <layout class="QHBoxLayout" name="horizontalLayout_13">
        <item>
         <widget class="QLabel" name="label_37">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                         ro_a</string>
+          <string>                  𝐶𝑑</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_38">
          <property name="text">
-          <string>За что отвечает</string>
+          <string>Коэффициент сопротивления воздуха</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="data_ro_a">
+        <widget class="QLineEdit" name="data_C_d">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -487,12 +677,18 @@
           </size>
          </property>
          <property name="text">
-          <string>153</string>
+          <string>0.005</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_39">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -500,7 +696,7 @@
           </size>
          </property>
          <property name="text">
-          <string>ПарСек</string>
+          <string/>
          </property>
         </widget>
        </item>
@@ -510,22 +706,33 @@
       <layout class="QHBoxLayout" name="horizontalLayout_14">
        <item>
         <widget class="QLabel" name="label_40">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                         C_d</string>
+          <string>                  Wx</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_41">
          <property name="text">
-          <string>За что отвечает</string>
+          <string>Скорость Ветра по оси Х</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="data_C_d">
+        <widget class="QLineEdit" name="data_W_x">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -534,12 +741,18 @@
           </size>
          </property>
          <property name="text">
-          <string>153</string>
+          <string>1</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_42">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -547,7 +760,7 @@
           </size>
          </property>
          <property name="text">
-          <string>ПарСек</string>
+          <string>м/c</string>
          </property>
         </widget>
        </item>
@@ -557,22 +770,33 @@
       <layout class="QHBoxLayout" name="horizontalLayout_15">
        <item>
         <widget class="QLabel" name="label_43">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>                         W_x</string>
+          <string>                  Wy</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_44">
          <property name="text">
-          <string>За что отвечает</string>
+          <string>Скорость ветра по оси Y</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="data_W_x">
+        <widget class="QLineEdit" name="data_W_y">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -581,12 +805,18 @@
           </size>
          </property>
          <property name="text">
-          <string>153</string>
+          <string>1</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_45">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -594,7 +824,267 @@
           </size>
          </property>
          <property name="text">
-          <string>ПарСек</string>
+          <string>м/c</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_17">
+       <item>
+        <widget class="QLabel" name="label_49">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>                  𝛺</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_50">
+         <property name="text">
+          <string>Угловая скорость вращения Земли</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="data_horseshoe">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>7.2921</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_51">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>10^-5 c^-1</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_18">
+       <item>
+        <widget class="QLabel" name="label_52">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>                  𝜑</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_53">
+           <property name="text">
+            <string>Географическая широта места разлива</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="data_fi">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>45</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_54">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>градусов</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_19">
+       <item>
+        <widget class="QLabel" name="label_55">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>                  Uw</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_56">
+         <property name="text">
+          <string>Скорость течения по оси X</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="data_u_w">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_57">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>м/c</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_20">
+       <item>
+        <widget class="QLabel" name="label_58">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>                  Vw</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_59">
+         <property name="text">
+          <string>Скорость течения по оси Y</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="data_v_w">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_60">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>м/c</string>
          </property>
         </widget>
        </item>
@@ -612,7 +1102,7 @@
        <item>
         <widget class="QLabel" name="label_47">
          <property name="text">
-          <string>                                                      1:</string>
+          <string>                          (1 пиксель = 1 метр)                          1:</string>
          </property>
         </widget>
        </item>
@@ -621,6 +1111,12 @@
          <property name="enabled">
           <bool>true</bool>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>150</width>
@@ -628,12 +1124,18 @@
           </size>
          </property>
          <property name="text">
-          <string>2</string>
+          <string>20</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_48">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>50</width>
@@ -641,7 +1143,7 @@
           </size>
          </property>
          <property name="text">
-          <string> </string>
+          <string/>
          </property>
         </widget>
        </item>
@@ -651,7 +1153,7 @@
       <widget class="QPushButton" name="start_btn">
        <property name="minimumSize">
         <size>
-         <width>50</width>
+         <width>125</width>
          <height>50</height>
         </size>
        </property>
@@ -662,13 +1164,37 @@
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>10</y>
+      <width>461</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>150</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Таблица переменных</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>570</width>
+     <width>887</width>
      <height>21</height>
     </rect>
    </property>
