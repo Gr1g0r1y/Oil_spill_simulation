@@ -12,5 +12,5 @@ horseshoe=7.2921
 fi=45
 u_w=1
 v_w=1
-scale=50
+scale=1000
 C_d=0.005
