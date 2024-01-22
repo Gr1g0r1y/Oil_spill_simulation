@@ -54,7 +54,7 @@ class Fish(pg.sprite.Sprite):
 
 
 class Oil:
-    def __init__(self, ro_w=1100, ro_0=860, scale=50, g=9.81, mu=0.05, kin_vis_w=1.519, v0=10, kin_vis_0=0.05,
+    def __init__(self, startTime=0, ro_w=1100, ro_0=860, scale=50, g=9.81, mu=0.05, kin_vis_w=1.519, v0=10, kin_vis_0=0.05,
                  p_a=1.2754, C_d=0.005, W_x=100, W_y=10 ** -10, fi=1, horseshoe=7.2921 * 10 ** (-5), u_w=1, v_w=1):
         self.ro_w = ro_w
         self.scale = scale
@@ -80,14 +80,12 @@ class Oil:
         self.r = 0
         self.h = 0
         self.time = 0
-        self.startTime = 0
+        self.startTime = startTime
         self.s = 0
+        self.square = 0
     
     def run(self, startTime: int):
         self.startTime = startTime
-    
-    def get_square(self):
-        return 12
     
     def get_h(self):
         return self.h
@@ -139,14 +137,13 @@ class Oil:
         self.s_x = self.s_x + cort_v[0] / self.scale
         self.s_y = self.s_y + cort_v[1] / self.scale
         # print(self.s_x, self.s_y)
-        
         self.a = math.acos(self.s_x / ((self.s_x ** 2 + self.s_y ** 2) ** 0.5 + 0.000000001))
         self.mini_r = round(self.s_y / math.cos(self.a))
         self.centre_of_circle = (round((self.s_x + math.tan(self.a) * self.s_y)), cfg.HEIGHT // 2)
         self.l = (self.s_x + math.tan(self.a) * self.s_y) + self.mini_r
-        
         pg.draw.circle(screen, color.BLACK, self.centre_of_circle, self.mini_r)
         self.p1 = [0, cfg.HEIGHT // 2]
         self.p2 = [0 + round(self.s_x), cfg.HEIGHT // 2 + round(self.s_y)]
         self.p3 = [0 + round(self.s_x), cfg.HEIGHT // 2 - round(self.s_y)]
         pg.draw.polygon(screen, color.BLACK, [self.p1, self.p2, self.p3])
+        self.square = self.s_y * self.scale * self.centre_of_circle[0] * self.scale + (self.mini_r * self.scale) ** 2 * (math.pi + 2 * self.a) / 2
