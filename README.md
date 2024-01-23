@@ -23,19 +23,34 @@
   Designations: O - the center of the circle, K - the exact beginning of the spreading of the spot, KP and KQ - tangents to the circle with the center at point O and the radius at a certain   point in time.
   Having considered the movement of an oil slick on the surface of the water, described in article [4], a model was chosen that most closely describes this movement, namely,
   that the spot itself expands around the circumference, and the current carries it away, and the shape of the spot is approximately described as tangents from the point of release of the     spot to a floating and simultaneously expanding circle. Let's consider the process of displaying a spot. Based on formulas (1 – 3) we obtain that:
-   (13)   S_x = (u_d + U_0)t   S_y = (v_d + U_0)t    
+   
+   (13)   S_x = (u_d + U_0)t   S_y = (v_d + U_0)t   
+   
   Based on this, we find α through the tangent: α = arctan(S_y / S_x) and find that the coordinate of the center using formula (13):  
+   
    (14)   x_centre = √(S_x^2 + S_y^2) / cos⁡α    
+  
   And find the radius of our circle:
+   
    (15)   R = S_y / cos⁡a    
+  
   Now that we have found all the necessary data for constructing the spot, let’s find some parameters of the spot:
     1) length of the spot along the x-axis – L, using formulas (14) and (15):
+       
        (16)   L = x_center + R = (S_y + √(S_x^2 + S_y^2 )) / cosa    
+    
     2) spot area S (angles are indicated clockwise):
+       
        (17) S = S_KPOQ + S_sector
+      
       where S_sector is the area of ​​the PQO sector of the circle. Let's find the angle using formula (18) and substitute it into formula (19) and get the area of ​​the sector:
+       
        (18) ∠POQ = 2π - 2 * (π / 2 - a) = π - 2a
+       
        (19) S_sector = πR^2 * (∠POQ / 2π) = R^2 * ((π - 2a) / 2) = ((S_y + √(S_x^2 + S_y^2 )) / cosa)^2 * ((π - 2a) / 2)
+      
       The area of ​​the quadrilateral KPOQ is equal to the area of ​​two triangles KOQ:
+       
        (20) S_KPOQ = S_x * cos⁡α * S_y * cos⁡α
+      
       By substituting formulas (20) and (19) into formula (17) we find the total area of ​​the spot.
