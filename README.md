@@ -35,8 +35,9 @@
    (15)   R = S_y / cos⁡a    
   
   Now that we have found all the necessary data for constructing the spot, let’s find some parameters of the spot:
+    
     1) length of the spot along the x-axis – L, using formulas (14) and (15):
-       
+    
        (16)   L = x_center + R = (S_y + √(S_x^2 + S_y^2 )) / cosa    
     
     2) spot area S (angles are indicated clockwise):
