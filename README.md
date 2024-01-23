@@ -1,11 +1,13 @@
-      *1) Introduction*   
+      ***1) Introduction***   
 Using these formulas, a program was created to simulate the oil slick plant process. The Python programming language was chosen to write the program, since this language has a huge number   of libraries, both built-in and created by other people, with which you can write realistic, efficient,
 a program that is understandable for the average user.
 The program was created according to the rules of object-oriented programming, that is, the program is divided into objects (classes), each of which has its own set of functions and         properties. For example, the program has the “Oil” class, which is responsible for the oil slick itself, and this class has the following functions: “draw”,
 which graphically displays the spot by parameters, “get_new_V”, in which all calculations are carried out and the results of which are used in the draw function, and others. The written     program can be divided into 2 main blocks: the first of them creates a table of values, and the second displays a spot based on these values.
 Mainly 2 libraries were used to write the code. The first of them is PyGame, in order to depict the process of an oil spill itself, since this library has built-in objects, the use of       which makes the programming process easier for the developer and improves the user experience. The second is PyQt5,
 which was used to create a table in which the user can record data to change various parameters of the initial conditions of an oil spill. This library allows you to create a simple and     intuitive interface.
+
       *2) How to use*
+      
 To run the program, you need to open the “menu.py” file and run it. A window will appear in front of you (screenshot below) in which there will be standard values ​​for all variables on       which the spreading of oil depends (a table like in the program with an explanation of the variables, add it and a link to the table). They can be changed depending on
 what parameters do oil, water and the environment have, taken by the user.
 
