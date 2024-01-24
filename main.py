@@ -2,13 +2,11 @@ import pygame as pg
 import colors as color
 import config as cfg
 from objects import Fish, Oil
-from tkinter import *
 
 
 
 
-
-if __name__ == "__main__":
+def simulation():
     pg.init()
     fpsClock = pg.time.Clock()
     pg.display.set_icon(pg.image.load('logo.png'))
@@ -44,7 +42,7 @@ if __name__ == "__main__":
             keys = pg.key.get_pressed()
             if event.type == pg.QUIT or keys[pg.K_ESCAPE]:
                 pg.quit()
-                sys.exit()
+                exit()
 
         # oil.run(pg.time.get_ticks())
         oil.draw(screen, pg.time.get_ticks())

@@ -3,6 +3,7 @@ import os
 from PyQt5 import QtGui
 from PyQt5 import uic  # Импортируем uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from main import simulation
 
 
 class MyWidget(QMainWindow):
@@ -51,13 +52,13 @@ class MyWidget(QMainWindow):
                 '<h1 style="color: rgb(250, 55, 55);">Ошибка: Введено недопустимое значение</h1>')
         else:
             self.label_ne_pizdi_mne.setText('')
-            self.start_btn.setEnabled(False)
+            # self.start_btn.setEnabled(False)
             with open('variables.txt', 'w') as f:
                 f.write(
                     f'time={time}\nstart={1}\nro_w={ro_w}\nro_0={ro_0}\nmu={mu}\ng={g}\nkin_vis_w={kin_vis_w}\nkin_vis_0={kin_vis_0}\nv_0={v_0}\np_a={p_a}\nW_x={W_x}\nW_y={W_y}\nhorseshoe={horseshoe}\nfi={fi}\nu_w={u_w}\nv_w={v_w}\nscale={scale}\nC_d={C_d}\n')
             f.close()
 
-            exec(open('main.py').read())
+            simulation()
 
 
 if __name__ == '__main__':

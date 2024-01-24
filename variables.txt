@@ -1,4 +1,4 @@
-time=5
+time=100
 start=1
 ro_w=1000
 ro_0=860

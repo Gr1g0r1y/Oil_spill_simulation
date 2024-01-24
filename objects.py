@@ -107,8 +107,8 @@ class Oil:
                     self.ro_w * self.kin_vis_w * h + self.ro_0 * self.kin_vis_0 * d_w)  # 5
             y = (self.ro_0 * self.kin_vis_0 * self.kin_vis_w) / (
                     self.ro_w * self.kin_vis_w * h + self.ro_0 * self.kin_vis_0 * d_w)  # 7
-            t_0_x = self.p_a * self.C_d * (self.W_x - self.u_d)  # 8
-            t_0_y = self.p_a * self.C_d * (self.W_y - self.v_d)  # 9
+            t_0_x = self.p_a * self.C_d * (self.W_x - self.u_d) * abs(self.W_x - self.u_d)  # 8
+            t_0_y = self.p_a * self.C_d * (self.W_y - self.v_d) * abs(self.W_y - self.v_d)  # 9
             # print(t_0_y, self.v_d)
             f = 2 * self.horseshoe * math.sin(self.fi)  # 10
             r = e0 * ((self.v0 ** 3 * alf * t) / (8 * math.pi ** 3)) ** 0.125  # 11
@@ -128,7 +128,7 @@ class Oil:
             self.u_d = u_wd + u_cd
             self.v_d = v_wd + v_cd
             self.time = t * 10000
-            return (u_cd / 3**3 + U_0, U_0 - v_cd / 3**3)
+            return (u_cd + U_0, U_0 - v_cd)
     
     def getNewVx(self, currentTime):
         pass
@@ -140,7 +140,6 @@ class Oil:
         cort_v = self.get_new_V(current_time)
         self.s_x = self.s_x + cort_v[0] / self.scale
         self.s_y = self.s_y + cort_v[1] / self.scale
-        # print(self.s_x, self.s_y)
         self.a = math.acos(self.s_x / ((self.s_x ** 2 + self.s_y ** 2) ** 0.5 + 0.000000001))
         self.mini_r = round(self.s_y / math.cos(self.a))
         self.centre_of_circle = (round((self.s_x + math.tan(self.a) * self.s_y)), cfg.HEIGHT // 2)
