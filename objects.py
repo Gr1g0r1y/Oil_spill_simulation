@@ -128,7 +128,7 @@ class Oil:
             self.u_d = u_wd + u_cd
             self.v_d = v_wd + v_cd
             self.time = t * 10000
-            return (u_cd + U_0, U_0 - v_cd)
+            return [u_cd + U_0, U_0 - v_cd]
     
     def getNewVx(self, currentTime):
         pass
@@ -138,8 +138,11 @@ class Oil:
     
     def draw(self, screen, current_time):
         cort_v = self.get_new_V(current_time)
+        if self.s_y < 35 and cort_v[1] < 0:
+            cort_v[1] = 0
         self.s_x = self.s_x + cort_v[0] / self.scale
         self.s_y = self.s_y + cort_v[1] / self.scale
+        # print(self.s_x, self.s_y)
         self.a = math.acos(self.s_x / ((self.s_x ** 2 + self.s_y ** 2) ** 0.5 + 0.000000001))
         self.mini_r = round(self.s_y / math.cos(self.a))
         self.centre_of_circle = (round((self.s_x + math.tan(self.a) * self.s_y)), cfg.HEIGHT // 2)

@@ -2,6 +2,8 @@ import pygame as pg
 import colors as color
 import config as cfg
 from objects import Fish, Oil
+from tkinter import *
+# from menu import menu
 
 
 
@@ -66,3 +68,4 @@ def simulation():
 
         pg.display.flip()
         fpsClock.tick(cfg.FPS)
+# simulation()
