@@ -11,13 +11,13 @@ class Fish(pg.sprite.Sprite):
     def __init__(self, x, y):
         pg.sprite.Sprite.__init__(self)
         self.rot = random.choice([True, False])
-        self.image = pg.transform.flip(pg.image.load("img.png").convert_alpha(), self.rot, False)
+        self.image = pg.transform.flip(pg.image.load("img.png").convert_alph(), self.rot, False)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
         self.canSwim = True
         self.hasPoint = True
-    
+
     def getPoint(self):
         if self.canSwim:
             return 0
@@ -25,23 +25,23 @@ class Fish(pg.sprite.Sprite):
             self.hasPoint = False
             return 1
         return 0
-    
+
     def changeImage(self):
         self.image = pg.transform.rotate(pg.image.load("imgD.png").convert_alpha(), 180)
         self.canSwim = False
-    
+
     def update(self, curr_r):
         if not self.canSwim:
             return 0
-        
+
         x = self.rect.centerx
         y = self.rect.centery
         w2, h2 = cfg.WIDTH // 2, (cfg.HEIGHT - 200) // 2
-        
+
         if ((x - w2) ** 2 + (y - h2) ** 2) <= curr_r ** 2:
             self.changeImage()
             return
-        
+
         self.rect.x += 1 if not self.rot else -1
         if self.rect.x > cfg.WIDTH + 50:
             self.rect.x = 0
