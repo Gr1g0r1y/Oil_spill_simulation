@@ -21,7 +21,7 @@ def simulation():
         d_of_v[key] = float(item)
     oil = Oil(ro_w=d_of_v['ro_w'],
               ro_0=d_of_v['ro_0'],
-              mu=d_of_v['mu'],
+              # mu=d_of_v['mu'],
               g=d_of_v['g'],
               kin_vis_w=d_of_v['kin_vis_w'],
               kin_vis_0=d_of_v['kin_vis_0'],

@@ -23,7 +23,7 @@ def menu():
         def run(self):
             ro_w = self.data_ro_w.text()
             ro_0 = self.data_ro_0.text()
-            mu = self.data_mu.text()
+            # mu = self.data_mu.text()
             g = self.data_g.text()
             kin_vis_w = self.data_kin_vis_w.text()
             kin_vis_0 = self.data_kin_vis_0.text()
@@ -39,7 +39,7 @@ def menu():
             C_d = self.data_C_d.text()
             time = self.data_time.text()
 
-            spi = [ro_w, ro_0, mu, g, kin_vis_w, kin_vis_0, v_0, p_a, W_x, W_y, horseshoe, fi, u_w, v_w, scale, C_d,
+            spi = [ro_w, ro_0, g, kin_vis_w, kin_vis_0, v_0, p_a, W_x, W_y, horseshoe, fi, u_w, v_w, scale, C_d,
                    time]
             flag = False
             for i in spi:
@@ -53,7 +53,7 @@ def menu():
                 self.start_btn.setEnabled(False)
                 with open('variables.txt', 'w') as f:
                     f.write(
-                        f'time={time}\nstart={1}\nro_w={ro_w}\nro_0={ro_0}\nmu={mu}\ng={g}\nkin_vis_w={kin_vis_w}\nkin_vis_0={kin_vis_0}\nv_0={v_0}\np_a={p_a}\nW_x={W_x}\nW_y={W_y}\nhorseshoe={horseshoe}\nfi={fi}\nu_w={u_w}\nv_w={v_w}\nscale={scale}\nC_d={C_d}\n')
+                        f'time={time}\nstart={1}\nro_w={ro_w}\nro_0={ro_0}\ng={g}\nkin_vis_w={kin_vis_w}\nkin_vis_0={kin_vis_0}\nv_0={v_0}\np_a={p_a}\nW_x={W_x}\nW_y={W_y}\nhorseshoe={horseshoe}\nfi={fi}\nu_w={u_w}\nv_w={v_w}\nscale={scale}\nC_d={C_d}\n')
                 f.close()
 
                 simulation()

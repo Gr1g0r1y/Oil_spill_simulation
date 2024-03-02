@@ -54,13 +54,13 @@ class Fish(pg.sprite.Sprite):
 
 
 class Oil:
-    def __init__(self, startTime=0, ro_w=1100, ro_0=860, scale=50, g=9.81, mu=0.05, kin_vis_w=1.519, v0=10, kin_vis_0=0.05,
+    def __init__(self, startTime=0, ro_w=1100, ro_0=860, scale=50, g=9.81, kin_vis_w=1.519, v0=10, kin_vis_0=0.05,
                  p_a=1.2754, C_d=0.005, W_x=100, W_y=10 ** -10, fi=1, horseshoe=7.2921 * 10 ** (-5), u_w=1, v_w=1, max_t=100):
         self.ro_w = ro_w
         self.scale = scale
         self.ro_0 = ro_0
         self.g = g
-        self.mu = mu
+        self.mu = kin_vis_0
         self.kin_vis_w = kin_vis_w
         self.v0 = v0
         self.kin_vis_0 = kin_vis_0
@@ -128,7 +128,7 @@ class Oil:
             self.u_d = u_wd + u_cd
             self.v_d = v_wd + v_cd
             self.time = t * 10000
-            return [u_cd + U_0, U_0 - v_cd]
+            return [max([u_cd, v_cd]) + U_0, U_0 - min([u_cd, v_cd])]
     
     def getNewVx(self, currentTime):
         pass
