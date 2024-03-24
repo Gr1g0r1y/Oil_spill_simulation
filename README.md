@@ -1,4 +1,4 @@
-**#|#|#|#|#   EN   #|#|#|#|#**
+**#|#|#|#|#   *EN*   #|#|#|#|#**
 
 We have created a program to simulate the process of spreading an oil slick. The Python programming language was chosen to write the program, since this language has a huge number of libraries, both built-in and created by other people, which help a lot when writing programs.
 
@@ -16,7 +16,7 @@ After entering all the data, you need to click the “Start generation” button
 
 Read more in the our article: [insert link]
 
-**#|#|#|#|#   RU   #|#|#|#|#**
+**#|#|#|#|#   *RU*   #|#|#|#|#**
 
 Нами была создана программа для моделирования процесса растекания нефтяного пятна. Для написания программы был выбран язык программирования Python, так как у этого языка есть огромное множество библиотек как встроенных, так и созданных другими людьми, которые очень сильно помогают при написании программ.
 
