@@ -14,7 +14,7 @@ After entering all the data, you need to click the “Start generation” button
 
 ![img2](https://github.com/Gr1g0r1y/Oil_spill_simulation/assets/131547274/5aa935f6-8879-4a7f-b7c6-e8aa997887e3)
 
-Read more in the article: [insert link]
+Read more in the our article: [insert link]
 
 **#|#|#|#|#   RU   #|#|#|#|#**
 
@@ -32,4 +32,4 @@ Read more in the article: [insert link]
 
 ![img2](https://github.com/Gr1g0r1y/Oil_spill_simulation/assets/131547274/5aa935f6-8879-4a7f-b7c6-e8aa997887e3)
 
-Подробнее в статье: [вставить ссылку]
+Подробнее в нашей статье: [вставить ссылку]
